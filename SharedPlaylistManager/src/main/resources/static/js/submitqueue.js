@@ -59,6 +59,8 @@ function searchSong() {
 		while (sr.childNodes.length > 0) {
 			sr.removeChild(sr.childNodes[0]);
 		}
+		
+		tracks.sort(dynamicSort("-playback_count"));
 
 		// one by one; add the song name and the uri
 		// ** using the debugger could see that each
@@ -118,4 +120,16 @@ function searchSong() {
 		}
 		;
 	});
+	
+	function dynamicSort(property) {
+	    var sortOrder = 1;
+	    if(property[0] === "-") {
+	        sortOrder = -1;
+	        property = property.substr(1);
+	    }
+	    return function (a,b) {
+	        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+	        return result * sortOrder;
+	    }
+	}
 }
