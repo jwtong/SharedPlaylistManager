@@ -1,20 +1,26 @@
 package edu.brown.cs.jwtong.BackendObjects;
 
 public class Song {
-  private final String _url;
-  private final String _name;
+  private final String uri;
+  private final String name;
+  private final String artworkURL;
 
-  public Song(String url, String name) {
-    _url = url;
-    _name = name;
+  public Song(String uri, String name, String artworkURL) {
+    this.uri = uri;
+    this.name = name;
+    this.artworkURL = artworkURL;
   }
 
-  public String get_url() {
-    return _url;
+  public String get_uri() {
+    return uri;
   }
 
   public String get_name() {
-    return _name;
+    return name;
+  }
+
+  public String get_artworkURL() {
+    return artworkURL;
   }
 
 }

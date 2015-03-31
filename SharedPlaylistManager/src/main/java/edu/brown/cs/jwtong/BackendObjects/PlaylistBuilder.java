@@ -1,14 +1,17 @@
 package edu.brown.cs.jwtong.BackendObjects;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PlaylistBuilder {
   private List<Song> _playlist;
+  private HashMap<Song, AtomicInteger> _songVotes;
 
   public PlaylistBuilder() {
-    _playlist = new ArrayList<Song>();
+    _playlist = new LinkedList<Song>();
   }
 
   public List<Song> get_playlist() {
@@ -17,6 +20,10 @@ public class PlaylistBuilder {
 
   public void set_playlist(List<Song> _playlist) {
     this._playlist = _playlist;
+  }
+
+  public Song createSong(String uri, String name, String artworkURL) {
+    return new Song(uri, name, artworkURL);
   }
 
   public void addSong(Song s) {
@@ -49,7 +56,7 @@ public class PlaylistBuilder {
 
   public boolean hasDuplicateSong(Song toCheck) {
     for (Song s: _playlist) {
-      if (s.get_url().equals(toCheck.get_url())) {
+      if (s.get_uri().equals(toCheck.get_uri())) {
         return true;
       }
       if (s.get_name().equals(toCheck.get_name())) {
